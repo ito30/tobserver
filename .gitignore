@@ -1,0 +1,7 @@
+node_modules/
+*.log
+logs/
+yarn.lock
+*.swp
+coverage/
+*.json
