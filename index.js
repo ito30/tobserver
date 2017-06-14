@@ -21,35 +21,27 @@ class TObserver {
     this.messageQueueViewModel = new MessageQueueViewModel(this.DB.connection, this.table);
   }
 
-  observeMessageQueue() {
+  observeMessageQueue(cb) {
     const formula = this.formula || '*/1 * * * *';
 
-    return new Promise((resolve) => {
-      schedule.scheduleJob(formula, () => {
-        const result = this.messageQueueModel
-          .getMessageByStatusAndExpired(this.table.status.values[0])
-          .then((list) => {
-            return list;
-          });
-
-        return resolve(result);
-      });
+    schedule.scheduleJob(formula, () => {
+      this.messageQueueModel
+        .getMessageByStatusAndExpired(this.table.status.values[0])
+        .then((list) => {
+          cb(list)
+        });
     });
   }
 
-  observeMessageQueueView() {
+  observeMessageQueueView(cb) {
     const formula = this.formula || '*/1 * * * *';
 
-    return new Promise((resolve) => {
-      schedule.scheduleJob(formula, () => {
-        const result = this.messageQueueViewModel
-          .getMessageByStatusAndExpired(this.table.status.values[0])
-          .then((list) => {
-            return list;
-          });
-
-        return resolve(result);
-      });
+    schedule.scheduleJob(formula, () => {
+      this.messageQueueViewModel
+        .getMessageByStatusAndExpired(this.table.status.values[0])
+        .then((list) => {
+          cb(list)
+        });
     });
   }
 }
