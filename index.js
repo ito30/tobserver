@@ -7,10 +7,7 @@ class TObserver {
   constructor(db, table, observer) {
     this.table = table;
     this.DB = new DB(db)
-
-    if (observer) {
-      this.formula = observer.cron_formula;
-    }
+    this.formula = observer.cron_formula;
 
     this.init();
   }

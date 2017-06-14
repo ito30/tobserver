@@ -4,7 +4,8 @@
   "description": "Tiket Observer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage --verbose",
+    "test:watch": "jest --coverage --verbose --watch",
     "migrate": "node_modules/sequelize-cli/bin/sequelize db:migrate --config databases/mysql/config/config.js --migrations-path databases/mysql/migrations"
   },
   "author": "Ito",
@@ -13,6 +14,7 @@
     "sequelize-cli": "^2.7.0"
   },
   "dependencies": {
+    "jest": "^20.0.4",
     "mysql": "^2.13.0",
     "node-schedule": "^1.2.3",
     "tlogger": "git+ssh://git@github.com/tiket-dev/tiket-microservice-lib-logger"
