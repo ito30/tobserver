@@ -4,4 +4,3 @@ logs/
 yarn.lock
 *.swp
 coverage/
-*.json
